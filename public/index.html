@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Membros</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <!-- Login -->
+            <div id="loginPage" class="page active">
+                <div class="card">
+                    <h1>Gestão de Membros</h1>
+                    <form id="loginForm">
+                        <input type="email" id="email" placeholder="E-mail" required>
+                        <input type="password" id="senha" placeholder="Senha" required>
+                        <button type="submit">Entrar</button>
+                        <p class="error" id="loginError"></p>
+                    </form>
+                    <p><a href="#" onclick="showPage('cadastroPage')">Criar novo cadastro</a></p>
+                </div>
+            </div>
+
+            <!-- Cadastro Público -->
+            <div id="cadastroPage" class="page">
+                <div class="card">
+                    <h1>Novo Cadastro</h1>
+                    <form id="cadastroForm">
+                        <input type="text" id="nomeC" placeholder="Nome completo" required>
+                        <input type="tel" id="telefoneC" placeholder="Telefone (DDD)" required>
+                        <input type="email" id="emailC" placeholder="E-mail" required>
+                        <input type="password" id="senhaC" placeholder="Senha (min. 8 caracteres)" required>
+                        <input type="text" id="tokenC" placeholder="Link de convite" required>
+                        <button type="submit">Cadastrar</button>
+                        <p class="error" id="cadastroError"></p>
+                    </form>
+                    <p><a href="#" onclick="showPage('loginPage')">Voltar ao login</a></p>
+                </div>
+            </div>
+
+            <!-- Painel Admin -->
+            <div id="adminPage" class="page">
+                <div class="header">
+                    <h1>Gestão de Membros - Admin</h1>
+                    <button onclick="logout()">Sair</button>
+                </div>
+                <div class="tabs">
+                    <button class="tab-btn active" onclick="showTab('igrejas')">Igrejas</button>
+                    <button class="tab-btn" onclick="showTab('usuarios')">Usuários</button>
+                    <button class="tab-btn" onclick="showTab('membros')">Membros</button>
+                </div>
+
+                <!-- Tab: Igrejas -->
+                <div id="igrejasTab" class="tab active">
+                    <h2>Gerenciar Igrejas</h2>
+                    <form id="novaIgrejaForm">
+                        <input type="text" id="nomeIgreja" placeholder="Nome da Igreja" required>
+                        <input type="email" id="emailMaster" placeholder="E-mail do Master" required>
+                        <input type="text" id="telefoneMaster" placeholder="Telefone" required>
+                        <button type="submit">Criar Igreja</button>
+                        <p class="error" id="igrejaError"></p>
+                    </form>
+                    <div id="igrejasList" class="list"></div>
+                </div>
+
+                <!-- Tab: Usuários -->
+                <div id="usuariosTab" class="tab">
+                    <h2>Gerenciar Usuários</h2>
+                    <form id="novoUsuarioForm">
+                        <input type="text" id="nomeUsuario" placeholder="Nome" required>
+                        <input type="email" id="emailUsuario" placeholder="E-mail" required>
+                        <select id="paperUsuario" required>
+                            <option value="">Selecione o papel</option>
+                            <option value="admin">Admin</option>
+                            <option value="master">Master</option>
+                            <option value="filial">Filial</option>
+                            <option value="membro">Membro</option>
+                        </select>
+                        <button type="submit">Criar Usuário</button>
+                        <p class="error" id="usuarioError"></p>
+                    </form>
+                    <div id="usuariosList" class="list"></div>
+                </div>
+
+                <!-- Tab: Membros -->
+                <div id="membrosTab" class="tab">
+                    <h2>Gerenciar Membros</h2>
+                    <form id="novoMembroForm">
+                        <input type="text" id="nomeMembro" placeholder="Nome" required>
+                        <input type="email" id="emailMembro" placeholder="E-mail" required>
+                        <input type="tel" id="telefoneMembro" placeholder="Telefone" required>
+                        <button type="submit">Criar Membro</button>
+                        <p class="error" id="membroError"></p>
+                    </form>
+                    <div id="membrosList" class="list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
